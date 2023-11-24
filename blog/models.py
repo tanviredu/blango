@@ -8,6 +8,8 @@ from django.contrib.contenttypes.fields import GenericRelation
 class Comment(models.Model):
     creator        = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE)
     content        = models.TextField()
+    created_at     = models.DateTimeField(auto_now_add=True)
+    modified_at    = models.DateTimeField(auto_now=True)
     
     ##1) defines a foreign key with ContentType. that can be any model
     ##2) we need an id as a foreign key for this content type
