@@ -5,6 +5,12 @@ from django.conf import settings
 class Tag(models.Model):
     value        = models.TextField(max_length=100)
     
+    def Number_Of_Posts(self):
+        ''' return the number of posts related to 
+            this tag
+        '''
+        return self.posts.count()
+    
     def __str__(self):
         return self.value
     
@@ -18,5 +24,8 @@ class Post(models.Model):
     modified_at  = models.DateTimeField(auto_now=True)
     published_at = models.DateTimeField(blank=True,null=True)
     tags         = models.ManyToManyField(Tag,related_name='posts')
+    
+    def __str__(self):
+        return self.title
     
     
